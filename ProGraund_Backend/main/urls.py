@@ -10,6 +10,6 @@ urlpatterns = [
     path('likes/<int:id>/', views.all_likes),
     path('comments/', views.all_comments),
     path('comments/<int:id>/', views.all_comments),
-    path('follows/', views.all_follows),
-    path('follows/<int:id>/', views.all_follows),
+    path('trackers/', views.all_trackers),
+    path('trackers/<int:id>/', views.all_trackers),
 ]
