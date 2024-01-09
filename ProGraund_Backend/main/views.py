@@ -40,3 +40,131 @@ def all_posts(request,id=0):
         post.delete()
         return JsonResponse("Deleted Successfully", safe=False)
     
+@csrf_exempt
+def all_users(request,id=0):
+    if request.method == 'GET':
+        users = User.objects.all()
+        user_serializer = UserSerializer(users, many=True)
+        return JsonResponse(user_serializer.data, safe=False)
+    
+    
+    elif request.method == 'POST':
+        user_data = JSONParser().parse(request)
+        user_serializer = UserSerializer(data=user_data)
+        if user_serializer.is_valid():
+            user_serializer.save()
+            return JsonResponse("Added Successfully", safe=False)
+        return JsonResponse("Failed to Add", safe=False)
+    
+    
+    elif request.method == 'PUT':
+        user_data = JSONParser().parse(request)
+        user = User.objects.get(user_id=user_data['user_id'])
+        user_serializer = UserSerializer(user, data=user_data)
+        if user_serializer.is_valid():
+            user_serializer.save()
+            return JsonResponse("Updated Successfully", safe=False)
+        return JsonResponse("Failed to Update")
+    
+    
+    elif request.method == 'DELETE':
+        user = User.objects.get(user_id=id)
+        user.delete()
+        return JsonResponse("Deleted Successfully", safe=False)
+    
+@csrf_exempt
+def all_comments(request,id=0):
+    if request.method == 'GET':
+        comments = Comments.objects.all()
+        comment_serializer = CommentsSerializer(comments, many=True)
+        return JsonResponse(comment_serializer.data, safe=False)
+    
+    
+    elif request.method == 'POST':
+        comment_data = JSONParser().parse(request)
+        comment_serializer = CommentsSerializer(data=comment_data)
+        if comment_serializer.is_valid():
+            comment_serializer.save()
+            return JsonResponse("Added Successfully", safe=False)
+        return JsonResponse("Failed to Add", safe=False)
+    
+    
+    elif request.method == 'PUT':
+        comment_data = JSONParser().parse(request)
+        comment = Comments.objects.get(comment_id=comment_data['comment_id'])
+        comment_serializer = CommentsSerializer(comment, data=comment_data)
+        if comment_serializer.is_valid():
+            comment_serializer.save()
+            return JsonResponse("Updated Successfully", safe=False)
+        return JsonResponse("Failed to Update")
+    
+    
+    elif request.method == 'DELETE':
+        comment = Comments.objects.get(comment_id=id)
+        comment.delete()
+        return JsonResponse("Deleted Successfully", safe=False)
+    
+@csrf_exempt
+def all_likes(request,id=0):
+    if request.method == 'GET':
+        likes = Like.objects.all()
+        like_serializer = LikeSerializer(likes, many=True)
+        return JsonResponse(like_serializer.data, safe=False)
+    
+    
+    elif request.method == 'POST':
+        like_data = JSONParser().parse(request)
+        like_serializer = LikeSerializer(data=like_data)
+        if like_serializer.is_valid():
+            like_serializer.save()
+            return JsonResponse("Added Successfully", safe=False)
+        return JsonResponse("Failed to Add", safe=False)
+    
+    
+    elif request.method == 'PUT':
+        like_data = JSONParser().parse(request)
+        like = Like.objects.get(like_id=like_data['like_id'])
+        like_serializer = LikeSerializer(like, data=like_data)
+        if like_serializer.is_valid():
+            like_serializer.save()
+            return JsonResponse("Updated Successfully", safe=False)
+        return JsonResponse("Failed to Update")
+    
+    
+    elif request.method == 'DELETE':
+        like = Like.objects.get(like_id=id)
+        like.delete()
+        return JsonResponse("Deleted Successfully", safe=False)
+    
+@csrf_exempt
+def all_trackers(request,id=0):
+    if request.method == 'GET':
+        trackers = Tracker.objects.all()
+        tracker_serializer = TrackerSerializer(trackers, many=True)
+        return JsonResponse(tracker_serializer.data, safe=False)
+    
+    
+    elif request.method == 'POST':
+        tracker_data = JSONParser().parse(request)
+        tracker_serializer = TrackerSerializer(data=tracker_data)
+        if tracker_serializer.is_valid():
+            tracker_serializer.save()
+            return JsonResponse("Added Successfully", safe=False)
+        return JsonResponse("Failed to Add", safe=False)
+    
+    
+    elif request.method == 'PUT':
+        tracker_data = JSONParser().parse(request)
+        tracker = Tracker.objects.get(tracker_id=tracker_data['tracker_id'])
+        tracker_serializer = TrackerSerializer(tracker, data=tracker_data)
+        if tracker_serializer.is_valid():
+            tracker_serializer.save()
+            return JsonResponse("Updated Successfully", safe=False)
+        return JsonResponse("Failed to Update")
+    
+    
+    elif request.method == 'DELETE':
+        tracker = Tracker.objects.get(tracker_id=id)
+        tracker.delete()
+        return JsonResponse("Deleted Successfully", safe=False)
+    
