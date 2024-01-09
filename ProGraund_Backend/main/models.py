@@ -18,9 +18,9 @@ class User(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
 class Tracker(models.Model):
+    connection_code = models.AutoField(primary_key=True,null=False)
     user_id = models.CharField(max_length=100)
     tracked_by = models.CharField(max_length=100)
-    conn_code = models.CharField(max_length=100)
 
 class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
@@ -37,6 +37,7 @@ class Like(models.Model):
     user_id = models.CharField(max_length=100)
 
 class Comments(models.Model):
+    comment_id = models.AutoField(primary_key=True)
     text = models.CharField(max_length=100)
     post_id = models.CharField(max_length=100)
     user_id = models.CharField(max_length=100)

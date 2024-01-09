@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'ProGraund_Backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'prograund',
+        'NAME': 'prograund_main',
     }
 }
 

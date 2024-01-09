@@ -137,7 +137,7 @@ def all_likes(request,id=0):
         return JsonResponse("Deleted Successfully", safe=False)
     
 @csrf_exempt
-def all_trackers(request,id=0):
+def all_trackers(request,conn_code=0):
     if request.method == 'GET':
         trackers = Tracker.objects.all()
         tracker_serializer = TrackerSerializer(trackers, many=True)
@@ -155,7 +155,7 @@ def all_trackers(request,id=0):
     
     elif request.method == 'PUT':
         tracker_data = JSONParser().parse(request)
-        tracker = Tracker.objects.get(tracker_id=tracker_data['tracker_id'])
+        tracker = Tracker.objects.get(conn_code=tracker_data['conn_code'])
         tracker_serializer = TrackerSerializer(tracker, data=tracker_data)
         if tracker_serializer.is_valid():
             tracker_serializer.save()
@@ -164,7 +164,7 @@ def all_trackers(request,id=0):
     
     
     elif request.method == 'DELETE':
-        tracker = Tracker.objects.get(tracker_id=id)
+        tracker = Tracker.objects.get(conn_code=conn_code)
         tracker.delete()
         return JsonResponse("Deleted Successfully", safe=False)
     
