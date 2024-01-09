@@ -105,12 +105,11 @@ def all_comments(request,id=0):
         return JsonResponse("Deleted Successfully", safe=False)
     
 @csrf_exempt
-def all_likes(request,id=0):
+def all_likes(request):
     if request.method == 'GET':
         likes = Like.objects.all()
         like_serializer = LikeSerializer(likes, many=True)
         return JsonResponse(like_serializer.data, safe=False)
-    
     
     elif request.method == 'POST':
         like_data = JSONParser().parse(request)
@@ -119,22 +118,7 @@ def all_likes(request,id=0):
             like_serializer.save()
             return JsonResponse("Added Successfully", safe=False)
         return JsonResponse("Failed to Add", safe=False)
-    
-    
-    elif request.method == 'PUT':
-        like_data = JSONParser().parse(request)
-        like = Like.objects.get(like_id=like_data['like_id'])
-        like_serializer = LikeSerializer(like, data=like_data)
-        if like_serializer.is_valid():
-            like_serializer.save()
-            return JsonResponse("Updated Successfully", safe=False)
-        return JsonResponse("Failed to Update")
-    
-    
-    elif request.method == 'DELETE':
-        like = Like.objects.get(like_id=id)
-        like.delete()
-        return JsonResponse("Deleted Successfully", safe=False)
+
     
 @csrf_exempt
 def all_trackers(request,connection_code=0):
