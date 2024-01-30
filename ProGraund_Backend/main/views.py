@@ -168,3 +168,10 @@ def all_trackers(request,id=0):
         tracker.delete()
         return JsonResponse("Deleted Successfully", safe=False)
     
+
+def login(username,password):
+    user = User.objects.get(username=username)
+    if user.password == password:
+        return True
+    else:
+        return False
