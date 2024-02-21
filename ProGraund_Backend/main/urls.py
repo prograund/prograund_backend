@@ -1,6 +1,9 @@
 from django.urls import path
 from . import views
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('posts/', views.all_posts),
     path('posts/<int:id>/', views.all_posts),
@@ -10,6 +13,7 @@ urlpatterns = [
     path('likes/<int:id>/', views.all_likes),
     path('comments/', views.all_comments),
     path('comments/<int:id>/', views.all_comments),
-    path('follows/', views.all_follows),
-    path('follows/<int:id>/', views.all_follows),
-]
+    path('trackers/', views.all_trackers),
+    path('trackers/<int:id>/', views.all_trackers),
+    path('posts/savefile', views.saveFile),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
