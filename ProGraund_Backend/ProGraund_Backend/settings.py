@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+MEDIA_URL = '/Files/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'Files')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,7 +95,7 @@ WSGI_APPLICATION = 'ProGraund_Backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'prograund',
+        'NAME': 'prograund_main',
     }
 }
 
