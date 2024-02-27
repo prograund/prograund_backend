@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 
 class User(models.Model):
     id = models.AutoField(primary_key=True)
@@ -29,6 +28,7 @@ class Post(models.Model):
     file = models.CharField(max_length=100, null=True)
     likes_count = models.IntegerField()
     share_count = models.IntegerField()
+    uploaded_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(null=True, blank=True)
     type = models.CharField(max_length=100)
 
@@ -41,3 +41,11 @@ class Comments(models.Model):
     post_id = models.CharField(max_length=100)
     user_id = models.CharField(max_length=100)
 
+class Article(models.Model):
+    article_id = models.AutoField(primary_key=True)
+    user_id = models.CharField(max_length=100)
+    title = models.CharField(max_length=500)
+    file = models.CharField(max_length=100, null=True)
+    likes_count = models.IntegerField()
+    share_count = models.IntegerField()
+    updated_time = models.DateTimeField(null=True, blank=True)

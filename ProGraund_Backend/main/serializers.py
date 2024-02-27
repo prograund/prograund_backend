@@ -25,3 +25,8 @@ class CommentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
         fields = '__all__'
+
+class ArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = '__all__'

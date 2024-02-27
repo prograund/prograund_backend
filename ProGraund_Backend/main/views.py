@@ -74,6 +74,38 @@ def all_users(request,id=0):
         return JsonResponse("Deleted Successfully", safe=False)
     
 @csrf_exempt
+def all_docs(request,id=0):
+    if request.method == 'GET':
+        docs = Article.objects.all()
+        doc_serializer = ArticleSerializer(docs, many=True)
+        return JsonResponse(doc_serializer.data, safe=False)
+    
+    
+    elif request.method == 'POST':
+        doc_data = JSONParser().parse(request)
+        doc_serializer = ArticleSerializer(data=doc_data)
+        if doc_serializer.is_valid():
+            doc_serializer.save()
+            return JsonResponse("Added Successfully", safe=False)
+        return JsonResponse("Failed to Add", safe=False)
+    
+    
+    elif request.method == 'PUT':
+        doc_data = JSONParser().parse(request)
+        doc = Article.objects.get(article_id=doc_data['article_id'])
+        doc_serializer = ArticleSerializer(doc, data=doc_data)
+        if doc_serializer.is_valid():
+            doc_serializer.save()
+            return JsonResponse("Updated Successfully", safe=False)
+        return JsonResponse("Failed to Update")
+    
+    
+    elif request.method == 'DELETE':
+        doc = Article.objects.get(article_id=id)
+        doc.delete()
+        return JsonResponse("Deleted Successfully", safe=False)
+
+@csrf_exempt
 def all_comments(request,id=0):
     if request.method == 'GET':
         comments = Comments.objects.all()

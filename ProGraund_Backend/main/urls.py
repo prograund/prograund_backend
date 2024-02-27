@@ -16,4 +16,6 @@ urlpatterns = [
     path('trackers/', views.all_trackers),
     path('trackers/<int:id>/', views.all_trackers),
     path('posts/savefile', views.saveFile),
+    path('docs/', views.all_docs),
+    path('docs/<int:id>/', views.all_docs),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
