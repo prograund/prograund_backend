@@ -209,8 +209,12 @@ def login(username,password):
     else:
         return False
 
+
 @csrf_exempt
 def saveFile(request):
-    file = request.FILES['file']
-    file_name = default_storage.save(file.name, file)
-    return JsonResponse(file_name, safe=False)
+    if request.method == 'POST':
+        file = request.FILES['file']
+        file_name = default_storage.save(file.name, file)
+        return JsonResponse(file_name, safe=False)
+    else:
+        return JsonResponse("Invalid request method", safe=False)
