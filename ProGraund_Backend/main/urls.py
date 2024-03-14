@@ -18,4 +18,5 @@ urlpatterns = [
     path('posts/savefile', views.saveFile),
     path('docs/', views.all_docs),
     path('docs/<int:id>/', views.all_docs),
+    path('auth/', views.login),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -6,6 +6,8 @@ from django.http.response import JsonResponse
 from main.models import *
 from main.serializers import *
 from django.core.files.storage import default_storage
+import jwt
+import time
 
 # Create your views here.
 
@@ -202,12 +204,30 @@ def all_trackers(request,id=0):
         return JsonResponse("Deleted Successfully", safe=False)
     
 
-def login(username,password):
-    user = User.objects.get(username=username)
-    if user.password == password:
-        return True
+@csrf_exempt
+def login(request):
+    if request.method == 'POST':
+        user_data = JSONParser().parse(request)
+        username = user_data['username']
+        password = user_data['password']
+        if checkUser(username, password):
+            token = generate_token(username)  # Generate a new token for each login
+            return JsonResponse({'token': token}, safe=False)
+        else:
+            return JsonResponse("Login Failed", safe=False)
     else:
-        return False
+        return JsonResponse("Invalid request method", safe=False)
+
+def generate_token(username):
+    token = jwt.encode({'username': username, 'timestamp': time.time()}, 'secret_key', algorithm='HS256')
+    return token
+
+def checkUser(username, password):
+    users = User.objects.all()
+    for user in users:
+        if user.username == username and user.password == password:
+            return True
+    return False
 
 
 @csrf_exempt
