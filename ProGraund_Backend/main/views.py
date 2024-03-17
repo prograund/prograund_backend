@@ -211,16 +211,14 @@ def login(request):
         username = user_data['username']
         password = user_data['password']
         if checkUser(username, password):
-            token = generate_token(username)  # Generate a new token for each login
-            return JsonResponse({'token': token}, safe=False)
+            user_id = getUserId(username)
+            return JsonResponse({'user_id': user_id}, safe=False)
         else:
             return JsonResponse("Login Failed", safe=False)
     else:
         return JsonResponse("Invalid request method", safe=False)
 
-def generate_token(username):
-    token = jwt.encode({'username': username, 'timestamp': time.time()}, 'secret_key', algorithm='HS256')
-    return token
+
 
 def checkUser(username, password):
     users = User.objects.all()
@@ -228,6 +226,12 @@ def checkUser(username, password):
         if user.username == username and user.password == password:
             return True
     return False
+
+def getUserId(username):
+    users = User.objects.all()
+    for user in users:
+        if user.username == username:
+            return user.id
 
 
 @csrf_exempt
