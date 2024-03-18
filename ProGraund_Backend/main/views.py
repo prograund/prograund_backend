@@ -6,8 +6,6 @@ from django.http.response import JsonResponse
 from main.models import *
 from main.serializers import *
 from django.core.files.storage import default_storage
-import jwt
-import time
 
 # Create your views here.
 
