@@ -206,10 +206,10 @@ def all_trackers(request,id=0):
 def login(request):
     if request.method == 'POST':
         user_data = JSONParser().parse(request)
-        username = user_data['username']
+        email = user_data['email']
         password = user_data['password']
-        if checkUser(username, password):
-            user_id = getUserId(username)
+        if checkUser(email, password):
+            user_id = getUserId(email)
             return JsonResponse({'user_id': user_id}, safe=False)
         else:
             return JsonResponse("Login Failed", safe=False)
@@ -218,17 +218,17 @@ def login(request):
 
 
 
-def checkUser(username, password):
+def checkUser(email, password):
     users = User.objects.all()
     for user in users:
-        if user.username == username and user.password == password:
+        if user.email == email and user.password == password:
             return True
     return False
 
-def getUserId(username):
+def getUserId(email):
     users = User.objects.all()
     for user in users:
-        if user.username == username:
+        if user.email == email:
             return user.id
 
 
