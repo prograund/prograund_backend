@@ -45,6 +45,7 @@ class Article(models.Model):
     article_id = models.AutoField(primary_key=True)
     user_id = models.CharField(max_length=100)
     title = models.CharField(max_length=500)
+    content = models.TextField()
     file = models.CharField(max_length=100, null=True)
     likes_count = models.IntegerField()
     share_count = models.IntegerField()
