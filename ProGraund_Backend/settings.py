@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-a*epeoxzv977nmckdu2l&06lefmu7*i0c$q=lhdm8at(mvk(#m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["mink-keen-equally.ngrok-free.app,127.0.0.1"]
+ALLOWED_HOSTS = ["mink-keen-equally.ngrok-free.app","127.0.0.1"]
 
 
 # Application definition
