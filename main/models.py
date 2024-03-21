@@ -4,7 +4,7 @@ from django.db import models
 class User(models.Model):
     id = models.AutoField(primary_key=True)
     fname = models.CharField(max_length=100)
-    lname = models.CharField(max_length=100)
+    lname = models.CharField(max_length=100,null=True)
     username = models.CharField(max_length=100)
     image = models.CharField(max_length=100, null=True)
     banner = models.CharField(max_length=100, null=True)
