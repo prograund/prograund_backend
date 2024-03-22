@@ -58,6 +58,7 @@ CORS_ORIGIN_WHITELIST = [
 
 CORS_ALLOW_HEADERS = [
     'ngrok-skip-browser-warning',
+    "172.19.2.144"
 ]
 
 
