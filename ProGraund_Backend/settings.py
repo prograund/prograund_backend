@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 CORS_ORIGIN_WHITELIST = [
     'https://prograund.vercel.app',
+        "172.19.2.144"
 ]
 
 
@@ -58,7 +59,7 @@ CORS_ORIGIN_WHITELIST = [
 
 CORS_ALLOW_HEADERS = [
     'ngrok-skip-browser-warning',
-    "172.19.2.144"
+
 ]
 
 
