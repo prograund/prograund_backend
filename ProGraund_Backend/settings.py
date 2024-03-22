@@ -53,7 +53,7 @@ CORS_ORIGIN_WHITELIST = [
     'https://prograund.vercel.app',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True # CORS
+
 
 
 CORS_ALLOW_HEADERS = [
