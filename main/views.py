@@ -240,3 +240,23 @@ def saveFile(request):
         return JsonResponse(file_name, safe=False)
     else:
         return JsonResponse("Invalid request method", safe=False)
+    
+
+
+@csrf_exempt
+def forgotPassword(request):
+    if request.method == 'POST':
+        user_data = JSONParser().parse(request)
+        email = user_data['email']
+        if checkEmailExists(email):
+            return JsonResponse(1, safe=False)
+        else:
+            return JsonResponse(0, safe=False);
+        
+
+def checkEmailExists(email):
+    users = User.objects.all()
+    for user in users:
+        if user.email == email:
+            return True
+    return False

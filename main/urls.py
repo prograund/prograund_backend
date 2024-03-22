@@ -17,6 +17,7 @@ urlpatterns = [
     path('trackers/<int:id>/', views.all_trackers),
     path('posts/savefile', views.saveFile),
     path('docs/', views.all_docs),
+    path('forgot-password/', views.forgotPassword),
     path('docs/<int:id>/', views.all_docs),
     path('auth/', views.login),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
