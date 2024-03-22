@@ -8,7 +8,7 @@ class User(models.Model):
     username = models.CharField(max_length=100)
     image = models.CharField(max_length=100, null=True)
     banner = models.CharField(max_length=100, null=True)
-    bio = models.CharField(max_length=100, null=True)
+    bio = models.CharField(max_length=300, null=True)
     profession = models.CharField(max_length=100, null=True)
     email = models.CharField(max_length=100)
     number = models.CharField(max_length=100)
