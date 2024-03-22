@@ -47,13 +47,13 @@ INSTALLED_APPS = [
     'main',
 ]
 
-# CORS_ORIGIN_ALLOW_ALL = True # CORS
 # # CORS_ORIGIN_WHITELIST = ("http://localhost:3000",)  # for realtime
 
 CORS_ORIGIN_WHITELIST = [
     'https://prograund.vercel.app',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True # CORS
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', # CORS
