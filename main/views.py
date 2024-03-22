@@ -61,12 +61,12 @@ def all_users(request,id=0):
     elif request.method == 'PUT':
         user_data = JSONParser().parse(request)
         user = User.objects.get(id=user_data['id'])
-        user_serializer = UserSerializer(user, data=user_data)
-        if user_serializer.is_valid():
-            user_serializer.save()
-            return JsonResponse("Updated Successfully", safe=False)
-        return JsonResponse("Failed to Update")
-    
+        for key, value in user_data.items():
+            if value:
+                setattr(user, key, value)
+        
+        user.save()
+        return JsonResponse("Updated Successfully", safe=False)
     
     elif request.method == 'DELETE':
         user = User.objects.get(user_id=id)
