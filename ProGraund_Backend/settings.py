@@ -51,7 +51,8 @@ INSTALLED_APPS = [
 
 CORS_ORIGIN_WHITELIST = [
     'https://prograund.vercel.app',
-        "http://172.19.2.144"
+        "http://172.19.2.144",
+        "http://localhost:3000"
 ]
 
 
