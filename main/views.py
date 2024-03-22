@@ -60,7 +60,7 @@ def all_users(request,id=0):
     
     elif request.method == 'PUT':
         user_data = JSONParser().parse(request)
-        user = User.objects.get(user_id=user_data['id'])
+        user = User.objects.get(id=user_data['id'])
         user_serializer = UserSerializer(user, data=user_data)
         if user_serializer.is_valid():
             user_serializer.save()
