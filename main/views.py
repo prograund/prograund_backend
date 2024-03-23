@@ -286,11 +286,10 @@ def forgotPassword(request):
             # Usage example
             sender_email = "verify.email.geetauniversity@gmail.com"
             sender_password = "clur hcmu orpl wftq"
-            recipient_email = email
-            subject = "Test Email"
-            message = "This is a test email."
+            subject = "Test"
+            message = "This"
 
-            send_email(sender_email, sender_password, recipient_email, subject, message)
+            send_email(sender_email, sender_password, email, subject, message)
             return JsonResponse(1, safe=False)
         else:
             return JsonResponse(0, safe=False)
