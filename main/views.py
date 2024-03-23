@@ -43,11 +43,8 @@ def send_email(sender_email, sender_password, recipient_email, subject, message)
 def all_posts(request,id=0):
     if request.method == 'GET':
         posts = Post.objects.all()
-        posts = list(posts)
-        random.shuffle(posts)
         post_serializer = PostSerializer(posts, many=True)
-        posts_bundle = [post_serializer.data[i:i+5] for i in range(0, len(post_serializer.data), 5)]
-        return JsonResponse(posts_bundle, safe=False)
+        return JsonResponse(post_serializer.data, safe=False)
     
     if request.method == 'POST':
         post_data = JSONParser().parse(request)
