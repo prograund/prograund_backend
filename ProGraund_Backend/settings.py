@@ -65,10 +65,24 @@ CORS_ALLOWED_ORIGINS = [
      "http://localhost:3000"
 ]
 
+
+# Example settings
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS'
+]
 CORS_ALLOW_HEADERS = [
     'ngrok-skip-browser-warning',
-
+    'Accept',
+    'Content-Type',
+    'Authorization',
 ]
+CORS_ALLOW_CREDENTIALS = True
+
 
 
 
