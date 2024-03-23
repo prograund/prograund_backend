@@ -287,8 +287,21 @@ def forgotPassword(request):
             sender_email = "verify.email.geetauniversity@gmail.com"
             sender_password = "clur hcmu orpl wftq"
             cleaned_password = sender_password.replace('\xa0', ' ')
-            subject = "Test"
-            message = "This"
+            subject = "Reset Password"
+            
+            # Generate a random password using ASCII characters
+            password = ""
+            
+            for i in range(8):
+                password += chr(random.randint(33, 126))
+            
+            message = f"Your new password is {password}. Please change it after logging in."
+
+            users = User.objects.all()
+            for user in users:
+                if user.email == email:
+                    user.password = password
+                    user.save()
 
             send_email(sender_email, cleaned_password, email, subject, message)
             return JsonResponse(1, safe=False)
