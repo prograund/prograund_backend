@@ -8,6 +8,35 @@ from main.serializers import *
 from django.core.files.storage import default_storage
 import random
 
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+def send_email(sender_email, sender_password, recipient_email, subject, message):
+    # Set up the SMTP server
+    smtp_server = "smtp.gmail.com"
+    smtp_port = 587
+
+    # Create a secure connection to the SMTP server
+    server = smtplib.SMTP(smtp_server, smtp_port)
+    server.starttls()
+    server.login(sender_email, sender_password)
+
+    # Create a multipart message
+    email_message = MIMEMultipart()
+    email_message["From"] = sender_email
+    email_message["To"] = recipient_email
+    email_message["Subject"] = subject
+
+    # Add the message body
+    email_message.attach(MIMEText(message, "plain"))
+
+    # Send the email
+    server.send_message(email_message)
+
+    # Close the SMTP server connection
+    server.quit()
+
 # Create your views here.
 
 @csrf_exempt
@@ -273,9 +302,31 @@ def forgotPassword(request):
         user_data = JSONParser().parse(request)
         email = user_data['email']
         if checkEmailExists(email):
+            # return JsonResponse(1, safe=False)
+            # Usage example
+            sender_email = "verify.email.geetauniversity@gmail.com"
+            sender_password = "clur hcmu orpl wftq"
+            cleaned_password = sender_password.replace('\xa0', ' ')
+            subject = "Reset Password"
+            
+            # Generate a random password using ASCII characters
+            password = ""
+            
+            for i in range(8):
+                password += chr(random.randint(33, 126))
+            
+            message = f"Your new password is {password}. Please change it after logging in."
+
+            users = User.objects.all()
+            for user in users:
+                if user.email == email:
+                    user.password = password
+                    user.save()
+
+            send_email(sender_email, cleaned_password, email, subject, message)
             return JsonResponse(1, safe=False)
         else:
-            return JsonResponse(0, safe=False);
+            return JsonResponse(0, safe=False)
         
 
 def checkEmailExists(email):
