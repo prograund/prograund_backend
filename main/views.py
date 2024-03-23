@@ -6,6 +6,7 @@ from django.http.response import JsonResponse
 from main.models import *
 from main.serializers import *
 from django.core.files.storage import default_storage
+import random
 
 import smtplib
 from email.mime.text import MIMEText
@@ -42,8 +43,11 @@ def send_email(sender_email, sender_password, recipient_email, subject, message)
 def all_posts(request,id=0):
     if request.method == 'GET':
         posts = Post.objects.all()
+        posts = list(posts)
+        random.shuffle(posts)
         post_serializer = PostSerializer(posts, many=True)
-        return JsonResponse(post_serializer.data, safe=False)
+        posts_bundle = [post_serializer.data[i:i+5] for i in range(0, len(post_serializer.data), 5)]
+        return JsonResponse(posts_bundle, safe=False)
     
     
     elif request.method == 'POST':
