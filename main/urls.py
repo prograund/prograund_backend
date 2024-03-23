@@ -6,6 +6,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('posts/', views.all_posts),
+    path('funny/', views.all_funny),
+    path('professional/', views.all_professional),
     path('posts/<int:id>/', views.all_posts),
     path('users/', views.all_users),
     path('users/<int:id>/', views.all_users),

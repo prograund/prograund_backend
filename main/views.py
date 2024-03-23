@@ -20,8 +20,7 @@ def all_posts(request,id=0):
         posts_bundle = [post_serializer.data[i:i+5] for i in range(0, len(post_serializer.data), 5)]
         return JsonResponse(posts_bundle, safe=False)
     
-    
-    elif request.method == 'POST':
+    if request.method == 'POST':
         post_data = JSONParser().parse(request)
         post_serializer = PostSerializer(data=post_data)
         if post_serializer.is_valid():
@@ -45,6 +44,27 @@ def all_posts(request,id=0):
         post.delete()
         return JsonResponse("Deleted Successfully", safe=False)
     
+
+@csrf_exempt
+def all_funny(request):
+    if request.method == 'GET':
+        funny_posts = Post.objects.filter(type='Funny')
+        funny_posts = list(funny_posts)
+        random.shuffle(funny_posts)
+        post_serializer = PostSerializer(funny_posts, many=True)
+        posts_bundle = [post_serializer.data[i:i+5] for i in range(0, len(post_serializer.data), 5)]
+        return JsonResponse(posts_bundle, safe=False)
+    
+@csrf_exempt
+def all_professional(request):
+    if request.method == 'GET':
+        funny_posts = Post.objects.filter(type='Professional')
+        funny_posts = list(funny_posts)
+        random.shuffle(funny_posts)
+        post_serializer = PostSerializer(funny_posts, many=True)
+        posts_bundle = [post_serializer.data[i:i+5] for i in range(0, len(post_serializer.data), 5)]
+        return JsonResponse(posts_bundle, safe=False)
+
 @csrf_exempt
 def all_users(request,id=0):
     if request.method == 'GET':
