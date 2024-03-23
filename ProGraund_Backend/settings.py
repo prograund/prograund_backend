@@ -66,6 +66,9 @@ CORS_ALLOWED_ORIGINS = [
     # Add other allowed origins if needed
 ]
 
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000"
+]
 
 # Example settings
 CORS_ALLOW_METHODS = [
