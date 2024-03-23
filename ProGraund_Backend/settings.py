@@ -47,29 +47,6 @@ INSTALLED_APPS = [
     'main',
 ]
 
-# # CORS_ORIGIN_WHITELIST = ("http://localhost:3000",)  # for realtime
-
-CORS_ORIGIN_WHITELIST = [
-    'https://prograund.vercel.app',
-        "http://172.19.2.144",
-        "http://localhost:3000"
-]
-
-CORS_ALLOWED_ORIGINS = [
-    'https://prograund.vercel.app',
-]
-
-CORS_ALLOW_ALL_ORIGINS = True
-
-
-
-
-CORS_ALLOW_HEADERS = [
-    'ngrok-skip-browser-warning',
-
-]
-
-
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', # CORS
     'django.middleware.security.SecurityMiddleware',
@@ -80,6 +57,20 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+# # CORS_ORIGIN_WHITELIST = ("http://localhost:3000",)  # for realtime
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    'https://prograund.vercel.app',
+     "http://localhost:3000"
+]
+
+CORS_ALLOW_HEADERS = [
+    'ngrok-skip-browser-warning',
+
+]
+
+
 
 ROOT_URLCONF = 'ProGraund_Backend.urls'
 
