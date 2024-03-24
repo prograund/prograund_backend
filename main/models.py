@@ -19,7 +19,6 @@ class User(models.Model):
 class Tracker(models.Model):
     user_id = models.CharField(max_length=100)
     tracked_by = models.CharField(max_length=100)
-    conn_code = models.CharField(max_length=100)
 
 class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
