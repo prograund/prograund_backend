@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from corsheaders import default_headers
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 MEDIA_URL = '/Files/'
@@ -58,7 +59,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 # # CORS_ORIGIN_WHITELIST = ("http://localhost:3000",)  # for realtime
-CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
@@ -77,6 +77,7 @@ CORS_ALLOW_METHODS = [
     'OPTIONS'
 ]
 CORS_ALLOW_HEADERS = [
+    *default_headers,
     'ngrok-skip-browser-warning',
     'Accept',
     'Content-Type',
@@ -162,6 +163,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+CORS_ALLOW_ALL_ORIGINS = True
 
 STATIC_URL = 'static/'
 
