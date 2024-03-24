@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-from corsheaders import default_headers
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 MEDIA_URL = '/Files/'
@@ -81,7 +80,6 @@ CORS_ALLOW_METHODS = [
     'OPTIONS'
 ]
 CORS_ALLOW_HEADERS = [
-    *default_headers,
     'ngrok-skip-browser-warning',
     'Accept',
     'Content-Type',
