@@ -23,7 +23,7 @@ class Tracker(models.Model):
 class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
     user_id = models.CharField(max_length=100)
-    title = models.CharField(max_length=500)
+    title = models.TextField(default=" ")
     file = models.CharField(max_length=100, null=True)
     likes_count = models.IntegerField()
     share_count = models.IntegerField()
